@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'form.dart';
 
 class NGOScreen extends StatelessWidget {
   const NGOScreen({super.key});
@@ -8,37 +10,61 @@ class NGOScreen extends StatelessWidget {
     final screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
+      extendBody: true,
+
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
         selectedItemColor: Colors.blue,
-        unselectedItemColor: Colors.grey,
+        unselectedItemColor: Color.fromARGB(255, 54, 53, 53),
+        onTap: (int index) {
+          switch (index) {
+            case 0:
+              // Already on Home; do nothing or maybe pop to home
+              break;
+            case 1:
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const VolunteerFormScreen()),
+              );
+              break;
+          }
+        },
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.dashboard), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.settings), label: ''),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.list_alt_sharp),
+            label: 'Form',
+          ),
         ],
       ),
       body: Container(
         height: screenHeight,
         width: double.infinity,
+
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.purple.shade200, Colors.deepPurple.shade600],
-            begin: Alignment.topCenter,
+            colors: [
+              const Color.fromARGB(255, 233, 199, 245),
+              const Color.fromARGB(255, 146, 0, 231),
+            ],
+            begin: Alignment.center,
             end: Alignment.bottomCenter,
           ),
         ),
         child: Column(
           children: [
-            // Orange Container (75% of screen height)
+            // Orange Container (% of screen height)
             Container(
               height: screenHeight * 0.66,
               width: double.infinity,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [Colors.orange.shade300, Colors.deepOrange.shade400],
-                  begin: Alignment.topCenter,
+                  colors: [
+                    const Color.fromARGB(255, 244, 215, 111),
+                    const Color.fromARGB(255, 252, 128, 4),
+                  ],
+                  begin: Alignment.center,
                   end: Alignment.bottomCenter,
                 ),
                 borderRadius: const BorderRadius.vertical(
@@ -54,7 +80,10 @@ class NGOScreen extends StatelessWidget {
                     padding: const EdgeInsets.all(20),
                     decoration: const BoxDecoration(
                       gradient: LinearGradient(
-                        colors: [Color(0xFFB2EBF2), Color(0xFFB9F6CA)],
+                        colors: [
+                          Color.fromARGB(255, 6, 152, 244),
+                          Color.fromARGB(255, 86, 230, 127),
+                        ],
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
                       ),
@@ -64,16 +93,16 @@ class NGOScreen extends StatelessWidget {
                     ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Icon(Icons.emoji_people, size: 50, color: Colors.blue),
+                      children: [
+                        Image.asset('assets/ngo.png', width: 180, height: 180),
                         SizedBox(height: 8),
                         Text(
-                          'NGO - Empowering Society',
+                          'Welcome to our Non-Governmental Organisation !\n Learn more about our mission and activities',
                           textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 16,
+                          style: GoogleFonts.inter(
+                            fontSize: 14,
                             fontWeight: FontWeight.bold,
-                            color: Colors.black87,
+                            color: const Color.fromARGB(255, 1, 136, 185),
                           ),
                         ),
                       ],
@@ -87,12 +116,12 @@ class NGOScreen extends StatelessWidget {
                       child: SingleChildScrollView(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
+                          children: [
                             SizedBox(height: 10),
                             Text(
                               'About Us',
-                              style: TextStyle(
-                                fontSize: 20,
+                              style: GoogleFonts.inter(
+                                fontSize: 25,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.brown,
                               ),
@@ -100,9 +129,9 @@ class NGOScreen extends StatelessWidget {
                             SizedBox(height: 10),
                             Text(
                               'We are a nonprofit organization dedicated to creating positive change in society through community-driven initiatives. Our mission is to uplift underprivileged communities by promoting education, healthcare, and sustainable development.',
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: Colors.black87,
+                              style: GoogleFonts.inter(
+                                fontSize: 16,
+                                color: const Color.fromARGB(221, 79, 42, 8),
                               ),
                             ),
                           ],
@@ -117,42 +146,30 @@ class NGOScreen extends StatelessWidget {
             // Remaining Purple Section (bottom)
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.all(20),
+                padding: const EdgeInsets.all(24),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
+                  children: [
                     Text(
                       'Key Activities',
-                      style: TextStyle(
-                        fontSize: 18,
+                      style: GoogleFonts.inter(
+                        fontSize: 25,
                         fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                        color: const Color.fromARGB(255, 87, 0, 109),
                       ),
                     ),
                     SizedBox(height: 10),
                     Text(
-                      '• Free health camps and donation drives',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    Text(
-                      '• Skill training and youth education',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    Text(
-                      '• Women empowerment workshops',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    Text(
-                      '• Food and essentials distribution',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    Text(
-                      '• Tree plantation and cleanliness drives',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    Text(
+                      '• Free health camps and donation drives\n'
+                      '• Skill training and youth education\n'
+                      '• Women empowerment workshops\n'
+                      '• Food and essentials distribution\n'
+                      '• Tree plantation and cleanliness drives\n'
                       '• Support rural development',
-                      style: TextStyle(color: Colors.white),
+                      style: GoogleFonts.inter(
+                        fontSize: 18,
+                        color: const Color.fromARGB(255, 87, 0, 109),
+                      ),
                     ),
                   ],
                 ),
